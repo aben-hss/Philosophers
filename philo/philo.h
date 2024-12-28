@@ -6,7 +6,7 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 23:36:00 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/12/08 01:36:56 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/12/28 03:01:41 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_philo
 	long			last_meal;
 	int				*die_check;
 	pthread_mutex_t *die;
+	pthread_mutex_t *meal_lock;
 }			t_philo;
 
 typedef struct s_data
@@ -42,12 +43,14 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t *die;
+	pthread_mutex_t *meal_lock;
 	int				nbr_of_philos;
 	long			t_to_die;
 	long			t_to_eat;
 	long			t_to_sleep;
 	long			nbr_of_meals;
 	int				die_check;
+
 }			t_data;
 
 # endif

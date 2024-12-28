@@ -1,3 +1,3 @@
 all:
-	gcc *.c -o philo -fsanitize=address
+	gcc *.c -o philo  -fsanitize=thread
 
