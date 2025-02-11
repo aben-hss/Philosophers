@@ -6,7 +6,7 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:43:56 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/12/28 19:46:54 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/12/29 02:52:12 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ long	cus_atol(char *str)
 	return (res);
 }
 
+void	destroy_all(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data ->nbr_of_philos)
+		pthread_mutex_destroy(&data->forks[i++]);
+	pthread_mutex_destroy(data->die);
+	pthread_mutex_destroy(data->meal_lock);
+	ft_malloc(FREE, 0);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -51,11 +63,11 @@ int	main(int ac, char **av)
 
 	i = 0;
 	if (ac != 5 && ac != 6)
-		return (1);
+		return (printf("invalid number of args\n"));
 	if (!init_time(av, &data))
-		return (2);
+		return (printf("invalid args\n"));
 	if (!init_philo(&data))
-		return (3);
+		return (printf("error\n"));
 	while (i < data.nbr_of_philos)
 	{
 		data.philos[i].start_time = gettimestamp();
@@ -68,5 +80,6 @@ int	main(int ac, char **av)
 	i = 0;
 	while (i < data.nbr_of_philos)
 		pthread_join(data.threads[i++], NULL);
+	destroy_all(&data);
 	return (1);
 }

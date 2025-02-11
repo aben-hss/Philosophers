@@ -6,7 +6,7 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:26:11 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/12/28 19:38:01 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/12/29 02:17:02 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	init_time(char **av, t_data *data)
 		data -> nbr_of_meals = -2;
 	if (data->nbr_of_philos == -1 || data ->t_to_die == -1 || \
 			data ->t_to_eat == -1 || data ->t_to_sleep == -1 || \
-			data -> nbr_of_meals == -1)
+			data -> nbr_of_meals == -1 || data->nbr_of_philos == 0 \
+			|| data->nbr_of_meals == 0)
 		return (0);
 	return (1);
 }

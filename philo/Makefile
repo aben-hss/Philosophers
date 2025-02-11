@@ -4,6 +4,8 @@ CFLAGS = -Wall -Wextra -Werror
 SRC =	g_c.c init_data.c main.c routine.c utils.c
 OBJ = ${SRC:.c=.o}
 
+all: $(NAME)
+
 $(NAME):$(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 

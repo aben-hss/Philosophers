@@ -6,7 +6,7 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:24:06 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/12/28 19:46:15 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/12/29 10:44:22 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	check_death_status(t_data *data, t_philo *philo)
 	{
 		data->die_check = 1;
 		pthread_mutex_unlock(data->die);
+		usleep(2000);
 		print_it(philo, "died");
 		return (1);
 	}
@@ -77,35 +78,3 @@ void	monitoring(t_data *data)
 		}
 	}
 }
-
-// void	monitoring(t_data *data)
-// {
-// 	int		i;
-// 	t_philo	*philo;
-
-// 	while (1 && data->nbr_of_philos)
-// 	{
-// 		i = 0;
-// 		while (i < data->nbr_of_philos)
-// 		{
-// 			philo = &data->philos[i];
-// 			pthread_mutex_lock(philo->meal_lock);
-// 			if (!philo->nbr_of_meals)
-// 			{
-// 				pthread_mutex_unlock(philo->meal_lock);
-// 				return ;
-// 			}
-// 			pthread_mutex_unlock(philo->meal_lock);
-// 			pthread_mutex_lock(data->die);
-// 			if (gettimestamp() - philo->last_meal > data->t_to_die)
-// 			{
-// 				data->die_check = 1;
-// 				pthread_mutex_unlock(data->die);
-// 				print_it(philo, "died");
-// 				return ;
-// 			}
-// 			pthread_mutex_unlock(data->die);
-// 			i++;
-// 		}
-// 	}
-// }
